@@ -25,7 +25,7 @@
 #ifndef SYSDEPS_H
 #define SYSDEPS_H
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
 # include "config_android.h"
 
@@ -35,7 +35,7 @@
 # include "config.h"
 #endif
 
-#endif /* ANDROID */
+#endif /* __ANDROID__ */
 
 #define _GNU_SOURCE 1
 #include <string.h>

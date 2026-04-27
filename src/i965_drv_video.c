@@ -40,7 +40,10 @@
 # include "i965_output_wayland.h"
 #endif
 
-#include "intel_version.h"
+#ifndef __ANDROID__
+# include "intel_version.h"
+#endif
+
 #include "intel_driver.h"
 #include "intel_memman.h"
 #include "intel_batchbuffer.h"
@@ -7466,11 +7469,13 @@ ensure_vendor_string(struct i965_driver_data *i965, const char *chipset)
             goto error;
         len += ret;
 
+#ifndef __ANDROID__
         ret = snprintf(&i965->va_vendor[len], sizeof(i965->va_vendor) - len,
                        " (%s)", INTEL_DRIVER_GIT_VERSION);
         if (ret < 0 || ret >= (sizeof(i965->va_vendor) - len))
             goto error;
         len += ret;
+#endif
     }
     return true;
 
